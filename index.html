@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Расчет НОД</title>
+    <title>ЕҮОБ есептеу</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -63,10 +63,10 @@
     <p class="centeredText">Лұқпан Аяна, Ибраева Томирис 5”Г”</p>
     <p class="centeredText">Жетекшілері: А.М Ержан С.А Садуакасова</p>
 
-    <input id="countInput" type="number" placeholder="Введите количество чисел" />
+    <input id="countInput" type="number" placeholder="Қанша сан енгізесіз" />
     <div id="numberInputs"></div>
     <div style="display: flex; justify-content: center; align-items: center; ">
-        <button id="calculateButton">Найти НОД</button>
+        <button id="calculateButton">ЕҮОБ табу</button>
     </div>
     <div style="display: flex; justify-content: center; align-items: center; margin: 5px">
         <div id="result" class="result" style="margin: auto"></div>
@@ -83,7 +83,7 @@
             for (let i = 0; i < count; i++) {
                 const input = document.createElement('input');
                 input.type = 'number';
-                input.placeholder = `Введите число ${i + 1}`;
+                input.placeholder = `${i + 1} - санды теріңіз`;
                 input.className = 'numberInput';
                 numberInputsDiv.appendChild(input);
             }
@@ -95,7 +95,7 @@
         const numbers = Array.from(inputs).map(input => parseInt(input.value)).filter(num => !isNaN(num));
 
         const result = gcd(numbers);
-        document.getElementById('result').innerText = `НОД: ${result}`;
+        document.getElementById('result').innerText = `ЕҮОБ: ${result}`;
     });
 
     function gcd(arr) {
