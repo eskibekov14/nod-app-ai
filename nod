@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Расчет НОД</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 400px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #007BFF;
+            color: white;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        .centeredText {
+            text-align: center;
+            font-size: 18px;
+            color: black;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="centeredText">Расчет НОД</h1>
+    <p class="centeredText">“Д.Қонаев атындағы жалпы білім беретін орта мектеп- гимназиясы”КММ</p>
+    <p class="centeredText">Лұқпан Аяна, Ибраева Томирис 5”Г”</p>
+    <p class="centeredText">Жетекшілері: А.М Ержан С.А Садуакасова</p>
+
+    <input id="countInput" type="number" placeholder="Введите количество чисел" />
+    <div id="numberInputs"></div>
+    <button id="calculateButton">Найти НОД</button>
+    <div id="result" class="result"></div>
+</div>
+
+<script>
+    document.getElementById('countInput').addEventListener('input', function() {
+        const count = parseInt(this.value);
+        const numberInputsDiv = document.getElementById('numberInputs');
+        numberInputsDiv.innerHTML = ''; // Очищаем предыдущие поля ввода
+
+        if (!isNaN(count) && count > 0) {
+            for (let i = 0; i < count; i++) {
+                const input = document.createElement('input');
+                input.type = 'number';
+                input.placeholder = `Введите число ${i + 1}`;
+                input.className = 'numberInput';
+                numberInputsDiv.appendChild(input);
+            }
+        }
+    });
+
+    document.getElementById('calculateButton').addEventListener('click', function() {
+        const inputs = document.querySelectorAll('.numberInput');
+        const numbers = Array.from(inputs).map(input => parseInt(input.value)).filter(num => !isNaN(num));
+
+        const result = gcd(numbers);
+        document.getElementById('result').innerText = `НОД: ${result}`;
+    });
+
+    function gcd(arr) {
+        return arr.reduce((a, b) => {
+            while (b) {
+                let temp = b;
+                b = a % b;
+                a = temp;
+            }
+            return a;
+        });
+    }
+</script>
+</body>
+</html>
